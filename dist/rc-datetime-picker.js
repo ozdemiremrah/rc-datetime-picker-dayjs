@@ -1,5 +1,5 @@
 /*
- * rc-datetime-picker-dayjs v1.0.0
+ * rc-datetime-picker-dayjs v1.0.1
  * https://github.com/OzdemirEmrah/rc-datetime-picker-dayjs
  *
  * (c) 2021 Emrah OZDEMIR
@@ -154,10 +154,10 @@ var Day = function (_Component) {
 
       var _dayjs = _this.state.dayjs.clone();
 
-      if (isPrevMonth) _dayjs.subtract(1, 'month');
-      if (isNextMonth) _dayjs.add(1, 'month');
+      if (isPrevMonth) _dayjs = _dayjs.subtract(1, 'month');
+      if (isNextMonth) _dayjs = _dayjs.add(1, 'month');
 
-      _dayjs.date(day);
+      _dayjs = _dayjs.date(day);
 
       _this.setState({
         dayjs: range$$1 ? _this.state.dayjs : _dayjs
@@ -357,7 +357,7 @@ var Month = function (_Component) {
 
       var _dayjs = _this.state.dayjs.clone();
 
-      _dayjs.month(month);
+      _dayjs = _dayjs.month(MONTHS.indexOf(month));
 
       _this.setState({
         dayjs: _dayjs
@@ -525,7 +525,7 @@ var Year = function (_Component) {
       if (isDisabled) return;
       var _dayjs = _this.state.dayjs.clone();
 
-      _dayjs.year(year);
+      _dayjs = _dayjs.year(year);
 
       _this.setState({
         dayjs: _dayjs,
@@ -889,13 +889,13 @@ var Time = function (_Component) {
               { className: 'slider-text' },
               'Hours:'
             ),
-            React__default.createElement(ReactSlider, { min: 0, max: 23, value: _dayjs.hour(), onChange: this.handleChange.bind(this, 'hours'), withBars: true }),
+            React__default.createElement(ReactSlider, { min: 0, max: 23, value: _dayjs.hour(), onChange: this.handleChange.bind(this, 'hour'), withBars: true }),
             React__default.createElement(
               'span',
               { className: 'slider-text' },
               'Minutes:'
             ),
-            React__default.createElement(ReactSlider, { min: 0, max: 59, value: _dayjs.minute(), onChange: this.handleChange.bind(this, 'minutes'), withBars: true })
+            React__default.createElement(ReactSlider, { min: 0, max: 59, value: _dayjs.minute(), onChange: this.handleChange.bind(this, 'minute'), withBars: true })
           )
         )
       );
@@ -915,10 +915,10 @@ var _initialiseProps$1 = function _initialiseProps() {
 
     if (result) {
       if (range) {
-        result = result[rangeAt] || dayjs().hours(0).minutes(0);
+        result = result[rangeAt] || dayjs().hour(0).minute(0);
       }
     } else {
-      result = dayjs().hours(0).minutes(0);
+      result = dayjs().hour(0).minute(0);
     }
 
     return result;
@@ -933,7 +933,7 @@ var _initialiseProps$1 = function _initialiseProps() {
     var _dayjs = _this2.state.dayjs.clone();
     var selected = _this2.props.dayjs;
 
-    _dayjs[type](value);
+    _dayjs = _dayjs[type](value);
 
     if (range) {
       var copyed = selected ? Object.assign(selected, {}) : {};
@@ -946,6 +946,7 @@ var _initialiseProps$1 = function _initialiseProps() {
     _this2.setState({
       dayjs: _dayjs
     });
+
     onChange && onChange(selected);
   };
 };

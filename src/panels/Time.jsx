@@ -23,23 +23,23 @@ class Time extends Component {
 
     if (result) {
       if (range) {
-        result = result[rangeAt] || dayjs().hours(0).minutes(0);
+        result = result[rangeAt] || dayjs().hour(0).minute(0);
       }
     } else {
-      result = dayjs().hours(0).minutes(0);
+      result = dayjs().hour(0).minute(0);
     }
-
+    
     return result;
   }
 
   handleChange = (type, value) => {
     const {onChange, range, rangeAt} = this.props;
-    const _dayjs = this.state.dayjs.clone();
+    let _dayjs = this.state.dayjs.clone();
     let selected = this.props.dayjs;
 
-    _dayjs[type](value);
+    _dayjs = _dayjs[type](value);
 
-    if (range) {
+    if (range) {  
       const copyed = selected ? Object.assign(selected, {}) : {};
 
       copyed[rangeAt] = _dayjs;
@@ -47,9 +47,11 @@ class Time extends Component {
       selected = _dayjs;
     }
 
+
     this.setState({
       dayjs: _dayjs
     });
+    
     onChange && onChange(selected);
   }
 
@@ -67,9 +69,9 @@ class Time extends Component {
           </div>
           <div className="sliders">
             <span className="slider-text">Hours:</span>
-            <ReactSlider min={0} max={23} value={_dayjs.hour()} onChange={this.handleChange.bind(this, 'hours')} withBars />
+            <ReactSlider min={0} max={23} value={_dayjs.hour()} onChange={this.handleChange.bind(this, 'hour')} withBars />
             <span className="slider-text">Minutes:</span>
-            <ReactSlider min={0} max={59} value={_dayjs.minute()} onChange={this.handleChange.bind(this, 'minutes')} withBars />
+            <ReactSlider min={0} max={59} value={_dayjs.minute()} onChange={this.handleChange.bind(this, 'minute')} withBars />
           </div>
         </div>
       </div>

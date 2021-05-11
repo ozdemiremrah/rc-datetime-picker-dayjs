@@ -29,9 +29,9 @@ class Year extends Component {
 
   select = (year, isDisabled) => {
     if (isDisabled) return;
-    const _dayjs = this.state.dayjs.clone();
+    let _dayjs = this.state.dayjs.clone();
 
-    _dayjs.year(year);
+    _dayjs = _dayjs.year(year);
 
     this.setState({
       dayjs: _dayjs,

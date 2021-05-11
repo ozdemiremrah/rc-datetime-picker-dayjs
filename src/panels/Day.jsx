@@ -31,13 +31,13 @@ class Day extends Component {
   select = (day, isSelected, isDisabled, isPrevMonth, isNextMonth) => {
     if (isDisabled) return;
     const {range, onSelect} = this.props;
-    const _dayjs = this.state.dayjs.clone();
+    let _dayjs = this.state.dayjs.clone();
     
-    if (isPrevMonth) _dayjs.subtract(1, 'month');
-    if (isNextMonth) _dayjs.add(1, 'month');
+    if (isPrevMonth) _dayjs = _dayjs.subtract(1, 'month');
+    if (isNextMonth) _dayjs = _dayjs.add(1, 'month');
 
-    _dayjs.date(day);
-    
+    _dayjs = _dayjs.date(day);
+
     this.setState({
       dayjs: range ? this.state.dayjs : _dayjs
     });

@@ -31,9 +31,10 @@ class Month extends Component {
   select = (month, isDisabled) => {
     if (isDisabled) return;
     const {onSelect} = this.props;
-    const _dayjs = this.state.dayjs.clone();
+    let _dayjs = this.state.dayjs.clone();
 
-    _dayjs.month(month);
+
+    _dayjs = _dayjs.month(MONTHS.indexOf(month));
 
     this.setState({
       dayjs: _dayjs
