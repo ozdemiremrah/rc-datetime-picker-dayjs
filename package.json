@@ -1,6 +1,6 @@
 {
   "name": "rc-datetime-picker-dayjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React datetime picker by dayjs",
   "main": "dist/rc-datetime-picker.cjs.js",
   "keywords": [
