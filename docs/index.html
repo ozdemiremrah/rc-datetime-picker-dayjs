@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Datetime Picker</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,300,500&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css">
+  <script src="https://use.fontawesome.com/7fdb149223.js"></script>
+</head>
+<body>
+  <h1 class="title">React Datetime Picker
+    <div class="buttons">
+      <a class="github-button" href="https://github.com/OzdemirEmrah/rc-datetime-picker-dayjs" data-icon="octicon-star" data-count-href="/OzdemirEmrah/rc-datetime-picker-dayjs/stargazers" data-count-api="/repos/OzdemirEmrah/rc-datetime-picker-dayjs#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star OzdemirEmrah/rc-datetime-picker-dayjs on GitHub">Star</a>
+    </div>
+  </h1>
+  <div class="content">
+    <div class="heading">Installation</div>
+    <div class="caption">Install with NPM</div>
+    <pre><code class="language-clike">npm install rc-datetime-picker</code></pre>
+    <div class="caption">Manual download</div>
+    <ul>
+      <li>dist/rc-datetime-picker.js</li>
+      <li>dist/rc-datetime-picker.min.js</li>
+    </ul>
+    <div class="heading">Usage</div>
+    <div class="caption">Inline Mode</div>
+    <div class="example-code">
+<pre><code class="language-jsx">import React, {Component} from 'react';
+import dayjs from 'dayjs';
+import {DatetimePicker} from 'rc-datetime-picker';
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dayjs: dayjs()
+    };
+  }
+
+  handleChange = (dayjs) => {
+    this.setState({
+      dayjs
+    });
+  }
+
+  render() {
+    return (
+      &lt;DatetimePicker
+        dayjs={this.state.dayjs}
+        onChange={this.handleChange}
+      /&gt;
+    );
+  }
+}
+
+render(
+  &lt;App /&gt;,
+  document.getElementById('app')
+);</code></pre>
+      <div class="example">
+        <div id="inline-picker"></div>
+      </div>
+    </div>
+
+    <div class="caption">Popup Mode</div>
+    <div class="example-code">
+<pre><code class="language-jsx">import React, {Component} from 'react';
+import dayjs from 'dayjs';
+import {DatetimePickerTrigger} from 'rc-datetime-picker';
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dayjs: dayjs()
+    };
+  }
+
+  handleChange = (dayjs) => {
+    this.setState({
+      dayjs
+    });
+  }
+
+  render() {
+    const shortcuts = {
+      'Today': dayjs(),
+      'Yesterday': dayjs().subtract(1, 'days'),
+      'Clear': ''
+    };
+
+    return (
+      &lt;DatetimePickerTrigger
+        shortcuts={shortcuts} 
+        dayjs={this.state.dayjs}
+        onChange={this.handleChange}&gt
+        &lt;input type="text" value={this.state.dayjs.format('YYYY-MM-DD HH:mm')} readOnly /&gt;
+      &lt;/DatetimePickerTrigger&gt;
+    );
+  }
+}
+
+render(
+  &lt;App /&gt;,
+  document.getElementById('app')
+);</code></pre>
+      <div class="example">
+        <div id="popup-picker"></div>
+      </div>
+    </div>
+  </div>
+
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-jsx.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
